@@ -1,5 +1,4 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
 const ContactValidation = Yup.object().shape({
@@ -25,7 +24,7 @@ export const ContactForm = ({ onAdd }) => {
         initialValues={{ name: '', number: '' }}
         validation={ContactValidation}
         onSubmit={(values, actions) => {
-          onAdd({ ...values, id: nanoid() });
+          onAdd(values, values.name);
           actions.resetForm();
         }}
       >
