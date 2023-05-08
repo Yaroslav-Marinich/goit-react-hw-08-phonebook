@@ -3,6 +3,8 @@ import defaultContacts from './defaultContacts.json';
 import { ContactForm } from './ContactsForm/ContactsForm';
 import { Filter } from './Filter/Filter';
 import { ContactsList } from './ContactsList/ContactsList';
+import toast, { Toaster } from 'react-hot-toast';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
@@ -10,14 +12,16 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = newName => {
-    if (this.state.contacts.find(contact => contact.name === newName.name)) {
-      alert(`${newName.name} is already in contacts.`);
+  addContact = (contact, name) => {
+    if (this.state.contacts.find(contact => contact.name === name)) {
+      toast.error(`${name} is already in contacts.`);
       return;
+    } else {
+      const newContact = { ...contact, id: nanoid() };
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
     }
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newName],
-    }));
   };
 
   deleteContact = contactId => {
@@ -31,6 +35,19 @@ export class App extends Component {
       filter: evt.currentTarget.value.toLocaleLowerCase().trim(),
     });
   };
+
+  componentDidMount() {
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   render() {
     const {
