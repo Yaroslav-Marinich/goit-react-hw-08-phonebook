@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsSlice';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -16,7 +18,9 @@ const ContactValidation = Yup.object().shape({
     .required('Required!'),
 });
 
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  
   return (
     <div>
       <h1>Phonebook</h1>
@@ -24,7 +28,7 @@ export const ContactForm = ({ onAdd }) => {
         initialValues={{ name: '', number: '' }}
         validation={ContactValidation}
         onSubmit={(values, actions) => {
-          onAdd(values, values.name);
+          dispatch(addContact(values, values.name));
           actions.resetForm();
         }}
       >
