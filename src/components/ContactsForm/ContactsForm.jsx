@@ -1,7 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contacts/contactsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { createContactThunk } from '../../redux/contacts/operations';
+import toast from 'react-hot-toast';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { selectContacts } from '../../redux/selectors';
 
 const ContactValidation = Yup.object().shape({
   name: Yup.string()
@@ -20,7 +22,8 @@ const ContactValidation = Yup.object().shape({
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  
+  const contacts = useSelector(selectContacts);
+
   return (
     <div>
       <h1>Phonebook</h1>
@@ -28,7 +31,11 @@ export const ContactForm = () => {
         initialValues={{ name: '', number: '' }}
         validation={ContactValidation}
         onSubmit={(values, actions) => {
-          dispatch(addContact(values, values.name));
+          if (contacts.find(contact => contact.name === values.name)) {
+            toast.error(`${values.name} is already in contacts.`);
+            return;
+          }
+          dispatch(createContactThunk(values, values.name));
           actions.resetForm();
         }}
       >

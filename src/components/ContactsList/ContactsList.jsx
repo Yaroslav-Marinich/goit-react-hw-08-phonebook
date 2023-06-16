@@ -1,15 +1,18 @@
-
 import { Contact } from 'components/Contact/Contact';
-import { useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContactsToShow, selectError } from 'redux/selectors';
+import { useEffect } from 'react';
+import { getContactsThunk } from 'redux/contacts/operations';
 
 export const ContactsList = () => {
-  const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
-  
-    const contactsToShow = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter)
-    );
+  const contactsToShow = useSelector(selectContactsToShow);
+  const error = useSelector(selectError);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
 
   return (
     <div>
@@ -17,10 +20,15 @@ export const ContactsList = () => {
       <ul>
         {contactsToShow.map(contact => (
           <li key={contact.id}>
-            <Contact contact={contact}/>
+            <Contact contact={contact} />
           </li>
         ))}
       </ul>
+      {!contactsToShow?.length && !error && (
+        <div>There are no available contacts in the Phonebook.</div>
+      )}
+
+      {error && <div>{error}</div>}
     </div>
   );
 };

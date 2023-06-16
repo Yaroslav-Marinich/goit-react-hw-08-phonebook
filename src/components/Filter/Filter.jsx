@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter } from '../../redux/selectors';
 
 export const Filter = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
-  
-    const name = e => {
-      dispatch(findContact(e.currentTarget.value.toLowerCase()));
+
+  const name = e => {
+    dispatch(findContact(e.currentTarget.value.toLowerCase()));
   };
-  
+
   return (
     <div>
       <label>
@@ -19,4 +19,3 @@ export const Filter = () => {
     </div>
   );
 };
-
