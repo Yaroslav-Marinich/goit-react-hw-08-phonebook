@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { createContactThunk } from '../../redux/contacts/operations';
+import { createContact } from '../../redux/contacts/contactsOperations';
 import toast from 'react-hot-toast';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { selectContacts } from '../../redux/selectors';
+import './styles.css'
 
 const ContactValidation = Yup.object().shape({
   name: Yup.string()
@@ -25,32 +26,50 @@ export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <div className="phonebookContainer">
+      <h1 className="phonebookTitle">Phonebook</h1>
       <Formik
         initialValues={{ name: '', number: '' }}
-        validation={ContactValidation}
+        validationSchema={ContactValidation}
         onSubmit={(values, actions) => {
           if (contacts.find(contact => contact.name === values.name)) {
             toast.error(`${values.name} is already in contacts.`);
             return;
           }
-          dispatch(createContactThunk(values, values.name));
+          dispatch(createContact(values, values.name));
           actions.resetForm();
         }}
       >
-        <Form action="">
-          <label htmlFor="">
+        <Form action="" className="phonebookForm">
+          <label htmlFor="" className="phonebookLabel">
             Name
-            <Field name="name" placeholder="Jane Doe" />
-            <ErrorMessage name="name" component="span" />
+            <Field
+              name="name"
+              placeholder="Jane Doe"
+              className="phonebookInput"
+            />
+            <ErrorMessage
+              name="name"
+              component="span"
+              className="phonebookError"
+            />
           </label>
-          <label htmlFor="">
+          <label htmlFor="" className="phonebookLabel">
             Number
-            <Field name="number" placeholder="000-00-00" />
-            <ErrorMessage name="number" component="span" />
+            <Field
+              name="number"
+              placeholder="000-00-00"
+              className="phonebookInput"
+            />
+            <ErrorMessage
+              name="number"
+              component="span"
+              className="phonebookError"
+            />
           </label>
-          <button type="submit">Add contact</button>
+          <button type="submit" className="phonebookBtn">
+            Add contact
+          </button>
         </Form>
       </Formik>
     </div>

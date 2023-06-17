@@ -1,0 +1,9 @@
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  align-items: center;
+  background-color: #151414;
+  padding: 15px 20px;
+  height: 90px;
+}

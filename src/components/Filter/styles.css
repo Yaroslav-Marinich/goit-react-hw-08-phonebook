@@ -1,0 +1,22 @@
+.filterContainer {
+  background-color: #242323;
+}
+
+.filterLabel {
+  margin-right: 30px;
+  padding-bottom: 20px;
+  color: #f9f9f9;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.filterInput {
+  border-radius: 10px;
+  background-color: #525151;
+  border: none;
+  height: 30px;
+  padding: 0 10px;
+  color: #fcc000;
+}

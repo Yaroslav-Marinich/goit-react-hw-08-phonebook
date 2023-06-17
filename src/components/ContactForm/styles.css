@@ -1,0 +1,64 @@
+.phonebookContainer {
+  background-color: #242323;
+  display: flex;
+  flex-direction: column;
+}
+
+.phonebookTitle {
+  color: #fcc000;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.phonebookForm {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px;
+  padding-bottom: 30px;
+  min-width: 400px;
+}
+
+.phonebookLabel {
+  display: flex;
+  justify-content: space-between;
+  min-width: 400px;
+  color: white;
+  position: relative;
+  align-items: center;
+}
+
+.phonebookInput {
+  border-radius: 10px;
+  background-color: #525151;
+  border: none;
+  height: 40px;
+  padding: 0 10px;
+  color: #fcc000;
+}
+
+.phonebookError {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.phonebookBtn {
+      width: 200px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: none;
+  background-color: #fcc000;
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+}

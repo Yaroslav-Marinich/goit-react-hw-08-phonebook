@@ -1,29 +1,29 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
-  createContactThunk,
-  deleteContactThunk,
-  getContactsThunk,
-} from './operations';
-import { initialState } from './initialState';
+  createContact,
+  deleteContact,
+  getContacts,
+} from './contactsOperations';
+import { contactsInitialState } from './contactsInitialState';
 
 const handlePending = state => {
-  state.status = 'pending';
+  state.isLoading = true;
 };
 
 const handleFulfilledGet = (state, action) => {
-  state.status = 'fulfilled';
+  state.isLoading = false;
   state.contacts = action.payload;
   state.error = '';
 };
 
 const handleFulfilledCreate = (state, action) => {
-  state.status = 'fulfilled';
+  state.isLoading = false;
   state.contacts.push(action.payload);
   state.error = '';
 };
 
 const handleFulfilledDelete = (state, action) => {
-  state.status = 'fulfilled';
+  state.isLoading = false;
   state.contacts = state.contacts.filter(
     contact => contact.id !== action.payload.id
   );
@@ -31,31 +31,31 @@ const handleFulfilledDelete = (state, action) => {
 };
 
 const handleRejected = (state, action) => {
-  state.status = 'rejected';
+  state.isLoading = false;
   state.error = action.payload;
 };
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState,
+  initialState: contactsInitialState,
   extraReducers: builder => {
     builder
-      .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
-      .addCase(createContactThunk.fulfilled, handleFulfilledCreate)
-      .addCase(deleteContactThunk.fulfilled, handleFulfilledDelete)
+      .addCase(getContacts.fulfilled, handleFulfilledGet)
+      .addCase(createContact.fulfilled, handleFulfilledCreate)
+      .addCase(deleteContact.fulfilled, handleFulfilledDelete)
       .addMatcher(
         isAnyOf(
-          getContactsThunk.pending,
-          createContactThunk.pending,
-          deleteContactThunk.pending
+          getContacts.pending,
+          createContact.pending,
+          deleteContact.pending
         ),
         handlePending
       )
       .addMatcher(
         isAnyOf(
-          getContactsThunk.rejected,
-          createContactThunk.rejected,
-          deleteContactThunk.rejected
+          getContacts.rejected,
+          createContact.rejected,
+          deleteContact.rejected
         ),
         handleRejected
       );

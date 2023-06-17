@@ -1,0 +1,17 @@
+.contactCompContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contactCompText {
+    color: #F9F9F9;
+}
+
+.contactCompBtn {
+    background-color: #FCC000;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px 5px;
+}

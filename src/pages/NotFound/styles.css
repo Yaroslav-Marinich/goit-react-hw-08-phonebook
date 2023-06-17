@@ -1,0 +1,33 @@
+.errorPageContainer {
+  height: 100vh;
+  background-color: #242323;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.errorPageTitle {
+  color: #525151;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.errorPageText {
+  color: #fcc000;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.errorPageBtn {
+  width: 200px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: none;
+  background-color: #fcc000;
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+}

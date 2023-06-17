@@ -1,0 +1,35 @@
+.contactsContainer {
+    height: 100vh;
+    background-color: #242323;
+    padding: 0 40px 40px 40px;
+}
+
+.contactsTitle {
+    color: #FCC000;
+    font-size: 22px;
+}
+
+.noContactsText {
+    color: #525151;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    padding: 40px 0 40px 0;
+}
+
+.contactsList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    align-items: center;
+}
+
+.contactsItem {
+    border: 2px solid #FCC000;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+}

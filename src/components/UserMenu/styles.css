@@ -1,0 +1,17 @@
+.userMenuContainer {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.userMenuText {
+    color: #F9F9F9;
+}
+
+.userMenuBtn {
+    background-color: #FCC000;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-weight: 500;
+}

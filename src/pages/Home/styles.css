@@ -1,0 +1,31 @@
+.heroContainer {
+    background-color: #242323;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroTitle {
+    color: #FCC000;
+    margin-bottom: 60px;
+}
+
+.heroNav {
+display: flex;
+gap: 40px;
+}
+
+.heroNavLink {
+    text-decoration: none;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FCC000;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}

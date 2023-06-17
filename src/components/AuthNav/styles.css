@@ -1,0 +1,9 @@
+#authBar a{
+  text-decoration: none;
+  color: #F9F9F9;
+}
+
+#authBar {
+    display: flex;
+    gap: 40px;
+}
